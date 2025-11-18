@@ -1,0 +1,287 @@
+<!-- Page 3: الذكريات + Music Card أفقي + Slider + عد الأيام -->
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ذكرياتنا 💜</title>
+
+  <!-- Bootstrap -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+  <style>
+    body {
+      background: linear-gradient(135deg, #1a001a, #4b0d5c);
+      color: #ffe6f0;
+      font-family: 'Cairo', sans-serif;
+      padding: 20px;
+      overflow: hidden;
+      min-height: 100vh;
+    }
+
+    /* قلوب صغيرة */
+    .heart {
+      position: absolute;
+      width: 15px;
+      height: 15px;
+      background: rgba(255, 105, 180, 0.3);
+      transform: rotate(-45deg);
+      animation: float 8s infinite;
+    }
+    .heart::before, .heart::after {
+      content: "";
+      position: absolute;
+      width: 15px;
+      height: 15px;
+      background: rgba(255, 105, 180, 0.3);
+      border-radius: 50%;
+    }
+    .heart::before { top: -7px; left: 0; }
+    .heart::after { left: 7px; top: 0; }
+
+    @keyframes float {
+      0% { transform: translateY(0) rotate(-45deg); opacity:0.5; }
+      50% { opacity:1; }
+      100% { transform: translateY(-800px) rotate(-45deg); opacity:0; }
+    }
+
+    .memory-box {
+      position: relative;
+      z-index: 10;
+    }
+
+    /* Music Card أفقي */
+    .music-card {
+      background: rgba(255,255,255,0.1);
+      backdrop-filter: blur(10px);
+      border-radius: 20px;
+      text-align: left;
+      max-width: 500px;
+      margin: auto;
+      padding: 30px;
+      box-shadow: 0 0 25px #ff66cc;
+    
+      display: flex;
+      align-items: center;
+      
+        margin-bottom: 56px;
+         margin-top: 53px;
+    }
+    .music-card img {
+      width: 80px;
+      height: 80px;
+      border-radius: 10px;
+      object-fit: cover;
+      margin-right: 20px;
+    }
+    .music-card h5 { margin:0 0 10px 0; }
+    .btn-group button { margin:2px; }
+
+    /* Slider */
+    #carouselMemory {
+      max-width: 700px;
+      margin: auto;
+      margin-top: 20px;
+      height: 400px;
+      background-color: #fff;
+      border-radius: 15px;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    #carouselMemory .carousel-item img {
+      width: auto;
+      height: 100%;
+      object-fit: contain;
+      display: block;
+      margin: 0 auto;
+      background-color: #fff;
+    }
+
+    .btn-next {
+      margin-top: 30px;
+      padding: 12px 25px;
+      font-size: 18px;
+      border-radius: 15px;
+      border: none;
+      background: #ff66cc;
+      color: white;
+      transition: 0.3s;
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .days-counter {
+    font-size: 18px;
+    color: #ff99cc;
+    text-align: center;
+    margin-bottom: 20px;
+    margin-top: 30px;
+    }
+    
+    /* gallery */
+    .carousel img{
+      width:100%;
+      aspect-ratio:1/1;
+      object-fit:contain;
+      background:white;
+      border-radius:14px;
+    }
+    /* فقط للشاشات الكبيرة (PC) */
+@media (min-width: 992px) {
+  .music-card {
+    max-width: 700px; /* يكبر حجم الكارد */
+    padding: 40px;
+    flex-direction: row; /* أفقي بالكامل */
+  }
+  .music-card img {
+    width: 120px;
+    height: 120px;
+    margin-right: 25px;
+  }
+  .music-card h5 {
+    font-size: 20px;
+  }
+  #carousel2 {
+    max-width: 900px;
+    height: 500px; /* أكبر ارتفاع للسلايدر */
+  }
+  .days-counter {
+    font-size: 22px;
+  }
+  .btn-next {
+    font-size: 20px;
+    padding: 15px 30px;
+  }
+}
+
+    
+    
+    .btn-next:hover { background: #ff99cc; }
+
+    .days-counter { font-size:18px; color:#ff99cc; text-align:center; margin-bottom:20px; }
+  </style>
+</head>
+<body>
+  <!-- توليد قلوب -->
+  <script>
+    for(let i=0;i<30;i++){
+      let heart = document.createElement('div');
+      heart.className = 'heart';
+      heart.style.left = Math.random()*window.innerWidth+'px';
+      heart.style.animationDuration = (5+Math.random()*5)+'s';
+      heart.style.width = heart.style.height = (5+Math.random()*15)+'px';
+      document.body.appendChild(heart);
+    }
+  </script>
+
+  <div class="memory-box animate__animated animate__fadeIn">
+    <h2 style="color:#ff99cc; text-align:center; margin-bottom:20px;">فاكرة ذكرياتنا مع بعض ؟؟ 💖</h2>
+
+   <!-- Music Card أفقي مع شريط الوقت -->
+<div class="music-card d-flex align-items-center p-3" style="background: rgba(255,255,255,0.1); backdrop-filter: blur(12px); border-radius: 20px; box-shadow: 0 8px 25px rgba(255,102,204,0.4); max-width: 500px; margin:auto; margin-bottom:30px;">
+  <!-- صورة الفنان -->
+  <img src="media/MEMO/image.png" alt="صورة الفنان" style="width:90px; height:90px; border-radius:50%; object-fit:cover; margin-right:20px; border:2px solid rgba(255,105,180,0.5);">
+
+  <!-- معلومات وتحكم الأغنية -->
+  <div style="flex:1;">
+    <h5 style="margin:0 0 10px 0; color:#ff99cc;">وبحتاجلك وتحتاجلي</h5>
+    <audio id="song" src="media/MEMO/11.mp3" style="width:100%;"></audio>
+
+    <!-- شريط الوقت -->
+    <input type="range" id="seekBar" value="0" min="0" max="100" style="width:100%;" onchange="seekAudio(this.value)">
+    <div style="display:flex; justify-content:space-between; font-size:12px; color:#ff99cc;">
+      <span id="currentTime">0:00</span>
+      <span id="duration">0:00</span>
+    </div>
+    <!-- زر التشغيل/الإيقاف -->
+    <div class="btn-group mt-2 mb-2">
+      <button class="btn btn-light btn-sm" style="transition:0.3s;" onclick="togglePlay()">▶️ / ⏸️</button>
+    </div>
+
+  </div>
+</div>
+
+    <!-- Days Timer -->
+    
+    <!-- Carousel / Slider -->
+    <div id="carousel2" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-inner">
+            <div class="carousel-item active"><img src="media/MEMO/1.jpeg" alt=""></div>
+            <div class="carousel-item "><img src="media/MEMO/2.jpeg" alt=""></div>
+            <div class="carousel-item "><img src="media/MEMO/3.jpeg" alt=""></div>
+            <div class="carousel-item "><img src="media/MEMO/4.jpeg" alt=""></div>
+            <div class="carousel-item "><img src="media/MEMO/5.jpeg" alt=""></div>
+            
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carousel2" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon"></span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carousel2" data-bs-slide="next">
+            <span class="carousel-control-next-icon"></span>
+        </button>
+    </div>
+    <p class="days-counter">حبيت افكرك اننا مع بعض بقالنا <span id="daysCount">0</span> يوم 💖</p>
+    
+    <button class="btn-next" onclick="nextPage()">نكمل 💖</button>
+  </div>
+
+ <script>
+  // حساب عدد الأيام منذ البداية
+  const startDate = new Date("2025-01-01"); // تاريخ البداية
+  const today = new Date();
+  const diffTime = Math.abs(today - startDate);
+  const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
+  document.getElementById('daysCount').innerText = diffDays;
+
+  // عناصر الصوت والتحكم
+  const song = document.getElementById('song');
+  const seekBar = document.getElementById('seekBar');
+  const currentTimeEl = document.getElementById('currentTime');
+  const durationEl = document.getElementById('duration');
+
+  // تحديث مدة الأغنية عند تحميل الميتاداتا
+  song.addEventListener('loadedmetadata', () => {
+    durationEl.textContent = formatTime(song.duration);
+  });
+
+  // تحديث الوقت الحالي والشريط أثناء التشغيل
+  song.addEventListener('timeupdate', () => {
+    if(song.duration) {
+      seekBar.value = (song.currentTime / song.duration) * 100;
+      currentTimeEl.textContent = formatTime(song.currentTime);
+    }
+  });
+
+  // زر التشغيل والإيقاف
+  function togglePlay() {
+    if(song.paused) song.play();
+    else song.pause();
+  }
+
+  // التحكم في شريط الوقت
+  function seekAudio(value) {
+    if(song.duration) {
+      song.currentTime = (value / 100) * song.duration;
+    }
+  }
+
+  // تنسيق الوقت دقائق:ثواني
+  function formatTime(seconds){
+    const min = Math.floor(seconds / 60);
+    const sec = Math.floor(seconds % 60).toString().padStart(2,'0');
+    return `${min}:${sec}`;
+  }
+
+  // زر الانتقال للصفحة التالية
+  function nextPage(){ 
+    window.location.href = 'final.html'; 
+  }
+</script>
+
+</body>
+</html>

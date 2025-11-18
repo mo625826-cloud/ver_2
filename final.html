@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>زعلانة مني؟ 💜</title>
+
+  <!-- Bootstrap & Animate.css -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+  <style>
+    body {
+      background: linear-gradient(135deg, #1a001a, #4b0d5c);
+      font-family: 'Cairo', sans-serif;
+      overflow: hidden;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: #ffe6f0;
+      position: relative;
+    }
+
+    /* قلوب صغيرة */
+    .heart {
+      position: absolute;
+      width: 15px;
+      height: 15px;
+      background: rgba(255, 105, 180, 0.3);
+      transform: rotate(-45deg);
+      animation: float 8s infinite;
+    }
+    .heart::before, .heart::after {
+      content: "";
+      position: absolute;
+      width: 15px;
+      height: 15px;
+      background: rgba(255, 105, 180, 0.3);
+      border-radius: 50%;
+    }
+    .heart::before { top: -7px; left: 0; }
+    .heart::after { left: 7px; top: 0; }
+
+    @keyframes float {
+      0% { transform: translateY(0) rotate(-45deg); opacity:0.5; }
+      50% { opacity:1; }
+      100% { transform: translateY(-800px) rotate(-45deg); opacity:0; }
+    }
+
+    .container-box {
+      text-align: center;
+      z-index: 10;
+    }
+
+    .btn-choice {
+      font-size: 18px;
+      margin: 10px;
+      padding: 12px 25px;
+      border-radius: 15px;
+      border: none;
+      background: #ff66cc;
+      color: white;
+      transition: 0.3s;
+      position: relative;
+    }
+    .btn-choice:hover { background: #ff99cc; }
+
+    #message {
+      margin-top: 20px;
+      font-size: 20px;
+      color: #ff99cc;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- توليد قلوب -->
+  <script>
+    for(let i=0;i<30;i++){
+      let heart = document.createElement('div');
+      heart.className = 'heart';
+      heart.style.left = Math.random()*window.innerWidth+'px';
+      heart.style.animationDuration = (5+Math.random()*5)+'s';
+      heart.style.width = heart.style.height = (5+Math.random()*15)+'px';
+      document.body.appendChild(heart);
+    }
+  </script>
+
+  <div class="container-box animate__animated animate__fadeIn">
+    <h2>زعلانة مني؟ 💖</h2>
+    <div>
+      <button class="btn-choice" id="btnNo">لا</button>
+      <button class="btn-choice" id="btnYes">أه</button>
+    </div>
+    <p id="message"></p>
+  </div>
+
+  <script>
+    const btnNo = document.getElementById('btnNo');
+    const btnYes = document.getElementById('btnYes');
+    const message = document.getElementById('message');
+
+    // لو ضغطت على "لا"
+    btnNo.addEventListener('click', () => {
+      message.textContent = "الحمد لله 😊، يلا مستنيكي تردي عليا  ❤️";
+    });
+
+    // لو ضغطت على "أه" الزر يهرب لمكان عشوائي
+    btnYes.addEventListener('mouseenter', () => {
+      const x = Math.random() * (window.innerWidth - btnYes.offsetWidth);
+      const y = Math.random() * (window.innerHeight - btnYes.offsetHeight);
+      btnYes.style.position = 'absolute';
+      btnYes.style.left = x + 'px';
+      btnYes.style.top = y + 'px';
+    });
+  </script>
+</body>
+</html>
