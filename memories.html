@@ -18,7 +18,8 @@
       font-family: 'Cairo', sans-serif;
       padding: 20px;
       overflow: hidden;
-      min-height: 100vh;
+      /* min-height: 100vh; */
+      height: 900px;
     }
 
     /* قلوب صغيرة */
@@ -157,6 +158,22 @@
     font-size: 20px;
     padding: 15px 30px;
   }
+  .fixed-btn {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 9999;
+  padding: 12px 25px;
+  font-size: 18px;
+  border-radius: 15px;
+  border: none;
+  background: #ff66cc;
+  color: white;
+  transition: 0.3s;
+}
+.fixed-btn:hover { background: #ff99cc; }
+
 }
 
     
@@ -227,7 +244,8 @@
     </div>
     <p class="days-counter">حبيت افكرك اننا مع بعض بقالنا <span id="daysCount">0</span> يوم 💖</p>
     
-    <button class="btn-next" onclick="nextPage()">نكمل 💖</button>
+    <button class="btn-next fixed-btn" onclick="nextPage()">نكمل 💖</button>
+
   </div>
 
  <script>
